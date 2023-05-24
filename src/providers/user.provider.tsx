@@ -7,14 +7,17 @@ import { ContactData } from "../components/Forms/Contact/contact.validator";
 // import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { EditProfileData } from "../components/Forms/Edit/edit.validators";
 
 interface iUserProvider {
   loading: boolean;
+  foundContacts: iProfile[];
+  user: iProfile;
   loginSubmit: (data: LoginData) => Promise<void>;
   registerSubmit: (data: RegisterSubmission) => Promise<void>;
   newContact: (data: ContactData) => Promise<void>;
   contactsList: () => Promise<void>;
-  foundContacts: iContact[];
+  editProfile: (data: EditProfileData) => Promise<void>;
 }
 
 interface iDecoded {
@@ -24,7 +27,7 @@ interface iDecoded {
   exp: number;
 }
 
-export interface iContact {
+export interface iProfile {
   email: string;
   fullName: string;
   id: string;
@@ -45,7 +48,8 @@ export const UserContext = createContext<iUserProvider>({} as iUserProvider);
 
 export const UserProvider = ({ children }: any) => {
   const [loading, setLoading] = useState(false);
-  const [foundContacts, setFoundContacts] = useState([] as iContact[]);
+  const [foundContacts, setFoundContacts] = useState([] as iProfile[]);
+  const [user, setUserInfo] = useState({} as iProfile);
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token") || "";
@@ -106,6 +110,15 @@ export const UserProvider = ({ children }: any) => {
     try {
       const list = await api.get(`/users/${decoded.sub}`, headers);
       setFoundContacts(list.data.contacts);
+      setUserInfo(list.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editProfile = async (data: EditProfileData) => {
+    try {
+      await api.patch(`users/${decoded.sub}`, data, headers);
     } catch (error) {
       console.log(error);
     }
@@ -115,11 +128,13 @@ export const UserProvider = ({ children }: any) => {
     <UserContext.Provider
       value={{
         loading,
+        user,
+        foundContacts,
         loginSubmit,
         registerSubmit,
         newContact,
         contactsList,
-        foundContacts,
+        editProfile,
       }}
     >
       {children}

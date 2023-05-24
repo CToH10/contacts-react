@@ -19,6 +19,7 @@ import Person2Icon from "@mui/icons-material/Person2";
 
 import { useState } from "react";
 import { ContactForm } from "../Forms/Contact";
+import { EditProfile } from "../Forms/Edit/Profile";
 
 type ModalOptions = "New Contact" | "Edit Profile" | "Edit Contact";
 
@@ -35,7 +36,7 @@ export const NavBar = () => {
       case "Edit Contact":
         return "";
       case "Edit Profile":
-        return "";
+        return <EditProfile />;
     }
   };
 

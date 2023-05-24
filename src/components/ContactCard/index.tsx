@@ -7,14 +7,14 @@ import {
 } from "@mui/material";
 import { Mail, Delete } from "@mui/icons-material";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { iContact } from "../../providers/user.provider";
+import { iProfile } from "../../providers/user.provider";
 import { red } from "@mui/material/colors";
 
-interface iContactProps {
-  contact: iContact;
+interface iProfileProps {
+  contact: iProfile;
 }
 
-export const ContactCard = ({ contact }: iContactProps) => {
+export const ContactCard = ({ contact }: iProfileProps) => {
   const since = (date: string) => {
     const newDate = new Date(date);
     const year = newDate.getFullYear();
