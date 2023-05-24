@@ -1,4 +1,4 @@
-import { Typography, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { UserContext } from "../../providers/user.provider";
 import { useContext, useEffect } from "react";
 import { ContactCard } from "../../components/ContactCard";
@@ -10,7 +10,7 @@ export const HomePage = () => {
   useEffect(() => {
     contactsList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [foundContacts]);
 
   return (
     <>
