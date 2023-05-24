@@ -52,8 +52,8 @@ export const UserProvider = ({ children }: any) => {
   const [user, setUserInfo] = useState({} as iProfile);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token") || "";
-  const decoded: iDecoded = jwt_decode(token);
+  const token = localStorage.getItem("token") || null;
+  const decoded: iDecoded | null = token ? jwt_decode(token) : null;
 
   const headers = {
     headers: {
@@ -108,7 +108,7 @@ export const UserProvider = ({ children }: any) => {
 
   const contactsList = async () => {
     try {
-      const list = await api.get(`/users/${decoded.sub}`, headers);
+      const list = await api.get(`/users/${decoded!.sub}`, headers);
       setFoundContacts(list.data.contacts);
       setUserInfo(list.data);
     } catch (error) {
@@ -118,7 +118,7 @@ export const UserProvider = ({ children }: any) => {
 
   const editProfile = async (data: EditProfileData) => {
     try {
-      await api.patch(`users/${decoded.sub}`, data, headers);
+      await api.patch(`users/${decoded!.sub}`, data, headers);
     } catch (error) {
       console.log(error);
     }

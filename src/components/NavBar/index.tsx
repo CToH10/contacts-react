@@ -16,7 +16,7 @@ import {
 import GroupsIcon from "@mui/icons-material/Groups";
 import MenuIcon from "@mui/icons-material/Menu";
 import Person2Icon from "@mui/icons-material/Person2";
-
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ContactForm } from "../Forms/Contact";
 import { EditProfile } from "../Forms/Edit/Profile";
@@ -28,6 +28,7 @@ export const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [open, setOpenModal] = useState<boolean>(false);
   const [modBody, setModBody] = useState<ModalOptions>("New Contact");
+  const navigate = useNavigate();
 
   const renderModBody = () => {
     switch (modBody) {
@@ -182,7 +183,12 @@ export const NavBar = () => {
                 >
                   <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/");
+                  }}
+                >
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
               </Menu>
