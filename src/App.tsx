@@ -1,23 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import { ToastContainer } from "react-toastify";
+import "./App.css";
+import { ContactForm } from "./components/Forms/Contact";
+// import { LoginForm } from "./components/Forms/Login";
+// import { RegisterForm } from "./components/Forms/Register";
+import { UserProvider } from "./providers/user.provider";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <UserProvider>
+          {/* <LoginForm></LoginForm> */}
+          {/* <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          /> */}
+          {/* <RegisterForm></RegisterForm> */}
+          <ContactForm></ContactForm>
+        </UserProvider>
       </header>
     </div>
   );

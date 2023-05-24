@@ -19,4 +19,7 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
+// export const registerSubmit
 export type RegisterData = z.infer<typeof registerSchema>;
+
+export type RegisterSubmission = Omit<RegisterData, "confirmPassword">;

@@ -1,9 +1,11 @@
 import { InputLabel, Input, Button, Alert } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterData, registerSchema } from "./register.validator";
 import { StyledForm } from "../style";
 import SendIcon from "@mui/icons-material/Send";
+import { useContext } from "react";
+import { UserContext } from "../../../providers/user.provider";
 
 export const RegisterForm = () => {
   const {
@@ -15,16 +17,20 @@ export const RegisterForm = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const sendRegister = (data: RegisterData) => {
-    console.log("data");
-    const { confirmPassword, ...body } = data;
-    console.log(body);
+  const { registerSubmit, loading } = useContext(UserContext);
+
+  const sendRegister: SubmitHandler<RegisterData> = ({
+    confirmPassword,
+    ...data
+  }: RegisterData) => {
+    registerSubmit(data);
   };
 
   return (
     <StyledForm onSubmit={handleSubmit(sendRegister)}>
       <InputLabel htmlFor="fullName">Full Name</InputLabel>
       <Input
+        disabled={loading}
         id="fullName"
         aria-describedby="Full name input"
         type="text"
@@ -35,6 +41,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="email">Email address</InputLabel>
       <Input
+        disabled={loading}
         id="email"
         aria-describedby="Email address input"
         type="email"
@@ -45,6 +52,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="phone">Phone</InputLabel>
       <Input
+        disabled={loading}
         id="phone"
         aria-describedby="Phone input"
         type="text"
@@ -55,6 +63,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="password">Password</InputLabel>
       <Input
+        disabled={loading}
         id="password"
         aria-describedby="Password input"
         type="password"
@@ -65,6 +74,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
       <Input
+        disabled={loading}
         id="confirmPassword"
         aria-describedby="Password confirmation input"
         type="password"
@@ -78,7 +88,7 @@ export const RegisterForm = () => {
         variant="outlined"
         size="large"
         endIcon={<SendIcon />}
-        // disabled={loading}
+        disabled={loading}
       >
         Submit
       </Button>

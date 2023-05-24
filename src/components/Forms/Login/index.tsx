@@ -1,9 +1,11 @@
 import { InputLabel, Input, Button, Alert } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginData, loginSchema } from "./login.validator";
 import { StyledForm } from "../style";
 import SendIcon from "@mui/icons-material/Send";
+import { useContext } from "react";
+import { UserContext } from "../../../providers/user.provider";
 
 export const LoginForm = () => {
   const {
@@ -15,14 +17,17 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const singIn = (data: LoginData) => {
-    console.log(data);
+  const { loginSubmit, loading } = useContext(UserContext);
+
+  const singIn: SubmitHandler<LoginData> = (data: LoginData) => {
+    loginSubmit(data);
   };
 
   return (
     <StyledForm onSubmit={handleSubmit(singIn)}>
       <InputLabel htmlFor="email">Email address</InputLabel>
       <Input
+        disabled={loading}
         id="email"
         aria-describedby="Email address input"
         type="email"
@@ -33,6 +38,7 @@ export const LoginForm = () => {
       )}
       <InputLabel htmlFor="password">Password</InputLabel>
       <Input
+        disabled={loading}
         id="password"
         aria-describedby="Password input"
         type="password"
@@ -46,7 +52,7 @@ export const LoginForm = () => {
         variant="outlined"
         size="large"
         endIcon={<SendIcon />}
-        // disabled={loading}
+        disabled={loading}
       >
         Submit
       </Button>
