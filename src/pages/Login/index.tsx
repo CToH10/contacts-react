@@ -11,7 +11,7 @@ import { StyledMain } from "./styles";
 import { useState } from "react";
 import { RegisterForm } from "../../components/Forms/Register";
 
-export const HomePage = () => {
+export const LoginPage = () => {
   const [open, setOpen] = useState(false);
   return (
     <main>

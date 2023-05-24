@@ -5,6 +5,7 @@ import { AxiosError } from "axios";
 import { RegisterSubmission } from "../components/Forms/Register/register.validator";
 import { ContactData } from "../components/Forms/Contact/contact.validator";
 // import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 interface iUserProvider {
   loading: boolean;
@@ -26,6 +27,7 @@ export const UserContext = createContext<iUserProvider>({} as iUserProvider);
 export const UserProvider = ({ children }: any) => {
   const [loading, setLoading] = useState(false);
   const [foundContacts, setFoundContacts] = useState([]);
+  const navigate = useNavigate();
 
   const headers = {
     headers: {
@@ -38,6 +40,7 @@ export const UserProvider = ({ children }: any) => {
       setLoading(true);
       const response = await api.post("login", data);
       localStorage.setItem("token", response.data.token);
+      navigate("/home");
     } catch (error) {
       const apiError = error as AxiosError<any>;
       let message = apiError.response?.data.message || "";
