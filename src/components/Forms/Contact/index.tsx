@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { StyledForm } from "../style";
 import SendIcon from "@mui/icons-material/Send";
 import { ContactData, contactSchema } from "./contact.validator";
+import { useContext } from "react";
+import { UserContext } from "../../../providers/user.provider";
 
 export const ContactForm = () => {
   const {
@@ -15,9 +17,12 @@ export const ContactForm = () => {
     resolver: zodResolver(contactSchema),
   });
 
+  const { newContact, loading } = useContext(UserContext);
+
   const registerContact = (data: ContactData) => {
-    console.log(data);
+    newContact(data);
   };
+
   return (
     <StyledForm onSubmit={handleSubmit(registerContact)}>
       <InputLabel htmlFor="fullName">Full Name</InputLabel>
@@ -56,7 +61,7 @@ export const ContactForm = () => {
         variant="outlined"
         size="large"
         endIcon={<SendIcon />}
-        // disabled={loading}
+        disabled={loading}
       >
         Submit
       </Button>

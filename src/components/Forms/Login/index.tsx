@@ -1,5 +1,5 @@
 import { InputLabel, Input, Button, Alert } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginData, loginSchema } from "./login.validator";
 import { StyledForm } from "../style";
@@ -19,7 +19,7 @@ export const LoginForm = () => {
 
   const { loginSubmit, loading } = useContext(UserContext);
 
-  const singIn = (data: LoginData) => {
+  const singIn: SubmitHandler<LoginData> = (data: LoginData) => {
     loginSubmit(data);
   };
 

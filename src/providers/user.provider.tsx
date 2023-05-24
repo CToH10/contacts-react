@@ -2,13 +2,15 @@ import { createContext, useState } from "react";
 import { api } from "../service/api";
 import { LoginData } from "../components/Forms/Login/login.validator";
 import { AxiosError } from "axios";
-import { RegisterData } from "../components/Forms/Register/register.validator";
+import { RegisterSubmission } from "../components/Forms/Register/register.validator";
+import { ContactData } from "../components/Forms/Contact/contact.validator";
 // import { toast } from "react-toastify";
 
 interface iUserProvider {
-  loginSubmit: (data: LoginData) => Promise<void>;
   loading: boolean;
-  registerSubmit: (data: RegisterData) => Promise<void>;
+  loginSubmit: (data: LoginData) => Promise<void>;
+  registerSubmit: (data: RegisterSubmission) => Promise<void>;
+  newContact: (data: ContactData) => Promise<void>;
 }
 
 // interface iError {
@@ -47,7 +49,7 @@ export const UserProvider = ({ children }: any) => {
     }
   };
 
-  const registerSubmit = async (data: RegisterData) => {
+  const registerSubmit = async (data: RegisterSubmission) => {
     try {
       setLoading(true);
       await api.post("users", data);
@@ -60,12 +62,26 @@ export const UserProvider = ({ children }: any) => {
     }
   };
 
+  const newContact = async (data: ContactData) => {
+    try {
+      setLoading(true);
+      await api.post("contacts", data, headers);
+    } catch (error) {
+      const apiError = error as AxiosError<any>;
+      let message = apiError.response?.data.message || "";
+      console.log(message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
-        loginSubmit,
         loading,
+        loginSubmit,
         registerSubmit,
+        newContact,
       }}
     >
       {children}
