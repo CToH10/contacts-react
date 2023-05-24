@@ -59,7 +59,16 @@ export const ContactCard = ({ contact }: iContactProps) => {
         <Typography>{contact.phone}</Typography>
         <Typography variant="body2">{since(contact.registered)}</Typography>
       </CardContent>
-      <CardActions sx={{ width: 255 }}>
+      <CardActions
+        sx={{
+          width: 255,
+          justifyContent: {
+            xs: "center",
+            sm: "end",
+            md: "end",
+          },
+        }}
+      >
         <Button
           type="button"
           color="secondary"

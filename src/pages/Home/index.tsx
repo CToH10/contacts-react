@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { UserContext } from "../../providers/user.provider";
 import { useContext, useEffect } from "react";
 import { ContactCard } from "../../components/ContactCard";
@@ -15,10 +15,19 @@ export const HomePage = () => {
   return (
     <>
       <NavBar />
-      <Container>
-        {foundContacts.map((contact) => (
-          <ContactCard contact={contact} key={contact.id} />
-        ))}
+
+      <Container sx={{ marginTop: 2 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 3, sm: 8, md: 12 }}
+        >
+          {foundContacts.map((contact) => (
+            <Grid item xs={3} sm={4} md={4} key={contact.id + 1}>
+              <ContactCard contact={contact} key={contact.id} />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </>
   );
