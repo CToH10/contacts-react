@@ -59,6 +59,7 @@ export const HomePage = () => {
           <CardActions>
             <Button
               type="button"
+              color="secondary"
               size="small"
               rel="noopener nonreferrer"
               href={`mailto:${contact.email}`}
@@ -69,6 +70,7 @@ export const HomePage = () => {
             </Button>
             <Button
               type="button"
+              color="secondary"
               size="small"
               rel="noopener nonreferrer"
               endIcon={<PhoneAndroid />}
