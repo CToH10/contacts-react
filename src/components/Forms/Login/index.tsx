@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginData, loginSchema } from "./login.validator";
 import { StyledForm } from "../style";
 import SendIcon from "@mui/icons-material/Send";
+import { useContext } from "react";
+import { UserContext } from "../../../providers/user.provider";
 
 export const LoginForm = () => {
   const {
@@ -15,8 +17,10 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  const { loginSubmit, loading } = useContext(UserContext);
+
   const singIn = (data: LoginData) => {
-    console.log(data);
+    loginSubmit(data);
   };
 
   return (
@@ -46,7 +50,7 @@ export const LoginForm = () => {
         variant="outlined"
         size="large"
         endIcon={<SendIcon />}
-        // disabled={loading}
+        disabled={loading}
       >
         Submit
       </Button>
