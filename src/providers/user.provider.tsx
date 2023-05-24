@@ -6,12 +6,31 @@ import { RegisterSubmission } from "../components/Forms/Register/register.valida
 import { ContactData } from "../components/Forms/Contact/contact.validator";
 // import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 interface iUserProvider {
   loading: boolean;
   loginSubmit: (data: LoginData) => Promise<void>;
   registerSubmit: (data: RegisterSubmission) => Promise<void>;
   newContact: (data: ContactData) => Promise<void>;
+  contactsList: () => Promise<void>;
+  foundContacts: iContact[];
+}
+
+interface iDecoded {
+  email: string;
+  sub: string;
+  iat: number;
+  exp: number;
+}
+
+interface iContact {
+  email: string;
+  fullName: string;
+  id: string;
+  phone: string;
+  registered: string;
+  userId: string;
 }
 
 // interface iError {
@@ -26,12 +45,15 @@ export const UserContext = createContext<iUserProvider>({} as iUserProvider);
 
 export const UserProvider = ({ children }: any) => {
   const [loading, setLoading] = useState(false);
-  const [foundContacts, setFoundContacts] = useState([]);
+  const [foundContacts, setFoundContacts] = useState([] as iContact[]);
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token") || "";
+  const decoded: iDecoded = jwt_decode(token);
 
   const headers = {
     headers: {
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      authorization: `Bearer ${token}`,
     },
   };
 
@@ -39,7 +61,9 @@ export const UserProvider = ({ children }: any) => {
     try {
       setLoading(true);
       const response = await api.post("login", data);
+
       localStorage.setItem("token", response.data.token);
+
       navigate("/home");
     } catch (error) {
       const apiError = error as AxiosError<any>;
@@ -78,6 +102,15 @@ export const UserProvider = ({ children }: any) => {
     }
   };
 
+  const contactsList = async () => {
+    try {
+      const list = await api.get(`/users/${decoded.sub}`, headers);
+      setFoundContacts(list.data.contacts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -85,6 +118,8 @@ export const UserProvider = ({ children }: any) => {
         loginSubmit,
         registerSubmit,
         newContact,
+        contactsList,
+        foundContacts,
       }}
     >
       {children}
