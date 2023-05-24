@@ -27,7 +27,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(sendRegister)}>
+    <StyledForm onSubmit={handleSubmit(sendRegister)} type="Register">
       <InputLabel htmlFor="fullName">Full Name</InputLabel>
       <Input
         disabled={loading}
