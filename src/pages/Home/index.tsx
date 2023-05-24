@@ -2,6 +2,7 @@ import { Typography, Container } from "@mui/material";
 import { UserContext } from "../../providers/user.provider";
 import { useContext, useEffect } from "react";
 import { ContactCard } from "../../components/ContactCard";
+import { NavBar } from "../../components/NavBar";
 
 export const HomePage = () => {
   const { contactsList, foundContacts } = useContext(UserContext);
@@ -12,11 +13,13 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <Container>
-      <Typography variant="h1">Welcome, to the mato</Typography>
-      {foundContacts.map((contact) => (
-        <ContactCard contact={contact} />
-      ))}
-    </Container>
+    <>
+      <NavBar />
+      <Container>
+        {foundContacts.map((contact) => (
+          <ContactCard contact={contact} key={contact.id} />
+        ))}
+      </Container>
+    </>
   );
 };
