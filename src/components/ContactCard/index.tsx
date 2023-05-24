@@ -7,14 +7,17 @@ import {
 } from "@mui/material";
 import { Mail, Delete } from "@mui/icons-material";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { iProfile } from "../../providers/user.provider";
+import { UserContext, iProfile } from "../../providers/user.provider";
 import { red } from "@mui/material/colors";
+import { useContext } from "react";
 
 interface iProfileProps {
   contact: iProfile;
 }
 
 export const ContactCard = ({ contact }: iProfileProps) => {
+  const { deleteContact } = useContext(UserContext);
+
   const since = (date: string) => {
     const newDate = new Date(date);
     const year = newDate.getFullYear();
@@ -97,6 +100,9 @@ export const ContactCard = ({ contact }: iProfileProps) => {
             ":hover": {
               backgroundColor: red[50],
             },
+          }}
+          onClick={() => {
+            deleteContact(contact.id);
           }}
         >
           <Delete />
