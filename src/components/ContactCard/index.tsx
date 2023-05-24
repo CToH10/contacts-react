@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { Mail, Delete } from "@mui/icons-material";
 import { iContact } from "../../providers/user.provider";
+import { red } from "@mui/material/colors";
 
 interface iContactProps {
   contact: iContact;
@@ -74,6 +75,7 @@ export const ContactCard = ({ contact }: iContactProps) => {
           size="small"
           rel="noopener nonreferrer"
           aria-label="Delete contact"
+          sx={{ color: red[600] }}
         >
           <Delete />
         </Button>
