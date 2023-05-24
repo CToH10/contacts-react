@@ -24,7 +24,7 @@ interface iDecoded {
   exp: number;
 }
 
-interface iContact {
+export interface iContact {
   email: string;
   fullName: string;
   id: string;
