@@ -6,7 +6,7 @@ import {
   Button,
   Container,
 } from "@mui/material";
-import { Mail, PhoneAndroid } from "@mui/icons-material";
+import { Mail, PhoneAndroid, Delete } from "@mui/icons-material";
 import { UserContext } from "../../providers/user.provider";
 import { useContext, useEffect } from "react";
 
@@ -46,17 +46,26 @@ export const HomePage = () => {
       <Typography variant="h1">Welcome, to the mato</Typography>
       {foundContacts.map((contact) => (
         <Card
-          sx={{ maxWidth: 255, minWidth: 120 }}
+          sx={{ maxWidth: 300, minWidth: 200 }}
           key={contact.id}
           id={contact.id}
         >
           <CardContent>
-            <Typography gutterBottom variant="h4">
+            <Typography
+              gutterBottom
+              variant="h4"
+              sx={{
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
               {contact.fullName}
             </Typography>
-            <Typography>{since(contact.registered)}</Typography>
+            <Typography>{contact.phone}</Typography>
+            <Typography variant="body2">{since(contact.registered)}</Typography>
           </CardContent>
-          <CardActions>
+          <CardActions sx={{ width: 255 }}>
             <Button
               type="button"
               color="secondary"
@@ -70,13 +79,11 @@ export const HomePage = () => {
             </Button>
             <Button
               type="button"
-              color="secondary"
               size="small"
               rel="noopener nonreferrer"
-              endIcon={<PhoneAndroid />}
-              aria-label="Button showing contact phone"
+              aria-label="Delete contact"
             >
-              {contact.phone}
+              <Delete />
             </Button>
           </CardActions>
         </Card>
