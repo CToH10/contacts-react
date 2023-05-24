@@ -27,6 +27,7 @@ export const LoginForm = () => {
     <StyledForm onSubmit={handleSubmit(singIn)}>
       <InputLabel htmlFor="email">Email address</InputLabel>
       <Input
+        disabled={loading}
         id="email"
         aria-describedby="Email address input"
         type="email"
@@ -37,6 +38,7 @@ export const LoginForm = () => {
       )}
       <InputLabel htmlFor="password">Password</InputLabel>
       <Input
+        disabled={loading}
         id="password"
         aria-describedby="Password input"
         type="password"

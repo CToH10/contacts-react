@@ -27,6 +27,7 @@ export const ContactForm = () => {
     <StyledForm onSubmit={handleSubmit(registerContact)}>
       <InputLabel htmlFor="fullName">Full Name</InputLabel>
       <Input
+        disabled={loading}
         id="fullName"
         aria-describedby="Full name input"
         type="fullName"
@@ -37,6 +38,7 @@ export const ContactForm = () => {
       )}
       <InputLabel htmlFor="email">Email address</InputLabel>
       <Input
+        disabled={loading}
         id="email"
         aria-describedby="Email address input"
         type="email"
@@ -47,6 +49,7 @@ export const ContactForm = () => {
       )}
       <InputLabel htmlFor="phone">Phone</InputLabel>
       <Input
+        disabled={loading}
         id="phone"
         aria-describedby="Phone input"
         type="phone"

@@ -30,6 +30,7 @@ export const RegisterForm = () => {
     <StyledForm onSubmit={handleSubmit(sendRegister)}>
       <InputLabel htmlFor="fullName">Full Name</InputLabel>
       <Input
+        disabled={loading}
         id="fullName"
         aria-describedby="Full name input"
         type="text"
@@ -40,6 +41,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="email">Email address</InputLabel>
       <Input
+        disabled={loading}
         id="email"
         aria-describedby="Email address input"
         type="email"
@@ -50,6 +52,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="phone">Phone</InputLabel>
       <Input
+        disabled={loading}
         id="phone"
         aria-describedby="Phone input"
         type="text"
@@ -60,6 +63,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="password">Password</InputLabel>
       <Input
+        disabled={loading}
         id="password"
         aria-describedby="Password input"
         type="password"
@@ -70,6 +74,7 @@ export const RegisterForm = () => {
       )}
       <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
       <Input
+        disabled={loading}
         id="confirmPassword"
         aria-describedby="Password confirmation input"
         type="password"
