@@ -6,7 +6,7 @@ interface iForm {
 
 export const StyledForm = styled.form<iForm>`
   ${(props) =>
-    props.type === "Register"
+    props.type !== "Login"
       ? `  width: clamp(250px, 40vw, 450px);
       `
       : `position: absolute;
