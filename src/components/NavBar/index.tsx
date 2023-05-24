@@ -20,21 +20,21 @@ import Person2Icon from "@mui/icons-material/Person2";
 import { useState } from "react";
 import { ContactForm } from "../Forms/Contact";
 
-type ModalOptions = "New" | "Profile" | "EditContact";
+type ModalOptions = "New Contact" | "Edit Profile" | "Edit Contact";
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [open, setOpenModal] = useState<boolean>(false);
-  const [modBody, setModBody] = useState<ModalOptions>("New");
+  const [modBody, setModBody] = useState<ModalOptions>("New Contact");
 
   const renderModBody = () => {
     switch (modBody) {
-      case "New":
+      case "New Contact":
         return <ContactForm />;
-      case "EditContact":
+      case "Edit Contact":
         return "";
-      case "Profile":
+      case "Edit Profile":
         return "";
     }
   };
@@ -110,7 +110,7 @@ export const NavBar = () => {
               >
                 <MenuItem
                   onClick={() => {
-                    setModBody("New");
+                    setModBody("New Contact");
                     handleCloseNavMenu();
                     setOpenModal(true);
                   }}
@@ -140,7 +140,7 @@ export const NavBar = () => {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
                 onClick={() => {
-                  setModBody("New");
+                  setModBody("New Contact");
                   handleCloseNavMenu();
                   setOpenModal(true);
                 }}
@@ -174,7 +174,7 @@ export const NavBar = () => {
               >
                 <MenuItem
                   onClick={() => {
-                    setModBody("Profile");
+                    setModBody("Edit Profile");
                     handleCloseUserMenu();
                     setOpenModal(true);
                   }}
@@ -197,7 +197,7 @@ export const NavBar = () => {
             aria-labelledby="Register form"
             aria-describedby="Registration for new users"
           >
-            <DialogTitle>Register</DialogTitle>
+            <DialogTitle>{modBody}</DialogTitle>
             <DialogContent>{renderModBody()}</DialogContent>
           </Dialog>
         </Container>

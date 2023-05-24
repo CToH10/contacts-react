@@ -6,6 +6,7 @@ import {
   Button,
 } from "@mui/material";
 import { Mail, Delete } from "@mui/icons-material";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { iContact } from "../../providers/user.provider";
 import { red } from "@mui/material/colors";
 
@@ -65,10 +66,17 @@ export const ContactCard = ({ contact }: iContactProps) => {
           size="small"
           rel="noopener nonreferrer"
           href={`mailto:${contact.email}`}
-          endIcon={<Mail />}
           aria-label="Button to send email to contact"
         >
-          Email
+          <Mail />
+        </Button>
+        <Button
+          type="button"
+          size="small"
+          rel="noopener nonreferrer"
+          aria-label="Button to edit contact"
+        >
+          <ModeEditIcon />
         </Button>
         <Button
           type="button"
