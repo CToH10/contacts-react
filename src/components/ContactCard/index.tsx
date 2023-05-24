@@ -92,7 +92,12 @@ export const ContactCard = ({ contact }: iContactProps) => {
           size="small"
           rel="noopener nonreferrer"
           aria-label="Delete contact"
-          sx={{ color: red[600] }}
+          sx={{
+            color: red[600],
+            ":hover": {
+              backgroundColor: red[50],
+            },
+          }}
         >
           <Delete />
         </Button>
