@@ -1,17 +1,18 @@
 // import { ToastContainer } from "react-toastify";
 import "./App.css";
-import { ContactForm } from "./components/Forms/Contact";
-// import { LoginForm } from "./components/Forms/Login";
-// import { RegisterForm } from "./components/Forms/Register";
 import { UserProvider } from "./providers/user.provider";
+import { BrowserRouter } from "react-router-dom";
+import { RoutesApp } from "./routes/routes";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./globalStyle";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <UserProvider>
-          {/* <LoginForm></LoginForm> */}
-          {/* <ToastContainer
+    <>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <UserProvider>
+            {/* <ToastContainer
             position="bottom-right"
             autoClose={3000}
             hideProgressBar={false}
@@ -23,11 +24,11 @@ function App() {
             pauseOnHover
             theme="colored"
           /> */}
-          {/* <RegisterForm></RegisterForm> */}
-          <ContactForm></ContactForm>
-        </UserProvider>
-      </header>
-    </div>
+            <RoutesApp />
+          </UserProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </>
   );
 }
 
