@@ -14,6 +14,7 @@ import { UserContext, iProfile } from "../../providers/user.provider";
 import { red } from "@mui/material/colors";
 import { useContext, useState } from "react";
 import { EditContact } from "../Forms/Edit/Contact";
+import { since } from "../../utils/since.getDate";
 
 export interface iProfileProps {
   contact: iProfile;
@@ -22,29 +23,6 @@ export interface iProfileProps {
 export const ContactCard = ({ contact }: iProfileProps) => {
   const { deleteContact } = useContext(UserContext);
   const [open, setOpenModal] = useState<boolean>(false);
-
-  const since = (date: string) => {
-    const newDate = new Date(date);
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth();
-
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    return `Since ${monthNames[month]}/${year}`;
-  };
 
   return (
     <>
