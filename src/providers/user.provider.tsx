@@ -19,7 +19,7 @@ interface iUserProvider {
   loginSubmit: (data: LoginData) => Promise<void>;
   registerSubmit: (data: RegisterSubmission) => Promise<void>;
   newContact: (data: ContactData) => Promise<void>;
-  contactsList: () => Promise<void>;
+  contactsList: (queryParam?: string) => Promise<void>;
   editProfile: (data: EditProfileData) => Promise<void>;
   deleteContact: (id: string) => Promise<void>;
   editContact: (id: string, data: EditContactData) => Promise<void>;
@@ -120,10 +120,16 @@ export const UserProvider = ({ children }: any) => {
     }
   };
 
-  const contactsList = async () => {
+  const contactsList = async (queryParam?: string) => {
     try {
-      const list = await api.get(`/users/${decoded!.sub}`, headers);
-      setFoundContacts(list.data.contacts);
+      let contactsRoute: string = `/contacts`;
+
+      if (queryParam) {
+        contactsRoute = `contacts?name=${queryParam}`;
+      }
+
+      const list = await api.get(contactsRoute, headers);
+      setFoundContacts(list.data);
       setUserInfo(list.data);
     } catch (error) {
       const apiError = error as AxiosError<any>;

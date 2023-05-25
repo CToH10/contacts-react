@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
+
 import GroupsIcon from "@mui/icons-material/Groups";
 import MenuIcon from "@mui/icons-material/Menu";
 import Person2Icon from "@mui/icons-material/Person2";
@@ -24,6 +25,7 @@ import { EditProfile } from "../Forms/Edit/Profile";
 import { Delete } from "@mui/icons-material";
 import { red } from "@mui/material/colors";
 import { UserContext } from "../../providers/user.provider";
+import { SearchBar } from "../searchBar";
 
 type ModalOptions = "New Contact" | "Edit Profile";
 
@@ -130,7 +132,6 @@ export const NavBar = () => {
                 </MenuItem>
               </Menu>
             </Box>
-            <GroupsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
@@ -146,7 +147,7 @@ export const NavBar = () => {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              CONTACTS
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
@@ -160,6 +161,8 @@ export const NavBar = () => {
                 Add contact
               </Button>
             </Box>
+
+            <SearchBar />
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

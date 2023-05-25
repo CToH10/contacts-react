@@ -10,13 +10,13 @@ export const HomePage = () => {
   useEffect(() => {
     contactsList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foundContacts]);
+  }, []);
 
   return (
     <>
       <NavBar />
 
-      <Container sx={{ marginTop: 2 }}>
+      <Container sx={{ marginTop: 5 }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
