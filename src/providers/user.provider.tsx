@@ -4,13 +4,13 @@ import { LoginData } from "../components/Forms/Login/login.validator";
 import { AxiosError } from "axios";
 import { RegisterSubmission } from "../components/Forms/Register/register.validator";
 import { ContactData } from "../components/Forms/Contact/contact.validator";
-// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import {
   EditContactData,
   EditProfileData,
 } from "../components/Forms/Edit/edit.validators";
+import { toast } from "react-hot-toast";
 
 interface iUserProvider {
   loading: boolean;
@@ -78,9 +78,9 @@ export const UserProvider = ({ children }: any) => {
     } catch (error) {
       const apiError = error as AxiosError<any>;
       let message = apiError.response?.data.message || "";
-      console.log(message);
+      toast.error(message);
 
-      //   toast.error(message);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -90,10 +90,14 @@ export const UserProvider = ({ children }: any) => {
     try {
       setLoading(true);
       await api.post("users", data);
+
+      toast.success("Account registered");
     } catch (error) {
       const apiError = error as AxiosError<any>;
       let message = apiError.response?.data.message || "";
-      console.log(message);
+      toast.error(message);
+
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -103,10 +107,14 @@ export const UserProvider = ({ children }: any) => {
     try {
       setLoading(true);
       await api.post("contacts", data, headers);
+
+      toast.success("New contact saved");
     } catch (error) {
       const apiError = error as AxiosError<any>;
       let message = apiError.response?.data.message || "";
-      console.log(message);
+      toast.error(message);
+
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -118,30 +126,52 @@ export const UserProvider = ({ children }: any) => {
       setFoundContacts(list.data.contacts);
       setUserInfo(list.data);
     } catch (error) {
-      console.log(error);
+      const apiError = error as AxiosError<any>;
+      let message = apiError.response?.data.message || "";
+      toast.error(message);
+
+      console.error(error);
     }
   };
 
   const editProfile = async (data: EditProfileData) => {
     try {
       await api.patch(`users/${decoded!.sub}`, data, headers);
+
+      toast.success("Profile updated");
     } catch (error) {
-      console.log(error);
+      const apiError = error as AxiosError<any>;
+      let message = apiError.response?.data.message || "";
+      toast.error(message);
+
+      console.error(error);
     }
   };
 
   const deleteContact = async (id: string) => {
     try {
       await api.delete(`contacts/${id}`, headers);
+
+      toast.success("Contact deleted");
     } catch (error) {
-      console.log(error);
+      const apiError = error as AxiosError<any>;
+      let message = apiError.response?.data.message || "";
+      toast.error(message);
+
+      console.error(error);
     }
   };
 
   const editContact = async (id: string, data: EditContactData) => {
     try {
       await api.patch(`contacts/${id}`, data, headers);
+
+      toast.success("Contact edited");
     } catch (error) {
+      const apiError = error as AxiosError<any>;
+      let message = apiError.response?.data.message || "";
+      toast.error(message);
+
       console.error(error);
     }
   };
@@ -149,7 +179,13 @@ export const UserProvider = ({ children }: any) => {
   const deleteUser = async () => {
     try {
       await api.delete(`users/${decoded!.sub}`, headers);
+
+      toast.success("User deleted");
     } catch (error) {
+      const apiError = error as AxiosError<any>;
+      let message = apiError.response?.data.message || "";
+      toast.error(message);
+
       console.error(error);
     }
   };
