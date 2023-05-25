@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const StyledMain = styled.section`
+export const StyledSection = styled.section`
   position: absolute;
   left: 50%;
   top: 20%;

@@ -25,7 +25,7 @@ import { Delete } from "@mui/icons-material";
 import { red } from "@mui/material/colors";
 import { UserContext } from "../../providers/user.provider";
 
-type ModalOptions = "New Contact" | "Edit Profile" | "Edit Contact";
+type ModalOptions = "New Contact" | "Edit Profile";
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -39,8 +39,6 @@ export const NavBar = () => {
     switch (modBody) {
       case "New Contact":
         return <ContactForm />;
-      case "Edit Contact":
-        return "";
       case "Edit Profile":
         return <EditProfile />;
     }
@@ -74,6 +72,7 @@ export const NavBar = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <GroupsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+
             <Typography
               variant="h6"
               noWrap
@@ -209,7 +208,7 @@ export const NavBar = () => {
             aria-labelledby="Register form"
             aria-describedby="Registration for new users"
           >
-            <DialogTitle>{modBody}</DialogTitle>
+            <DialogTitle color="secondary">{modBody}</DialogTitle>
             <DialogContent>{renderModBody()}</DialogContent>
             {modBody === "Edit Profile" && (
               <DialogActions sx={{ justifyContent: "center" }}>

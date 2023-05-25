@@ -68,8 +68,9 @@ export const EditProfile = () => {
         )}
         <Button
           type="submit"
-          variant="outlined"
+          variant="contained"
           size="large"
+          color="secondary"
           endIcon={<SendIcon />}
           disabled={loading}
         >

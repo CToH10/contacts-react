@@ -100,7 +100,7 @@ export const ContactCard = ({ contact }: iProfileProps) => {
         aria-labelledby="Edit contact form"
         aria-describedby="Edit contact"
       >
-        <DialogTitle>Edit contact</DialogTitle>
+        <DialogTitle color="secondary">Edit contact</DialogTitle>
         <DialogContent>{<EditContact contact={contact} />}</DialogContent>
       </Dialog>
     </>

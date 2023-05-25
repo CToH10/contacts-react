@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { StyledMain } from "./styles";
+import { StyledSection } from "./styles";
 import { useState } from "react";
 import { RegisterForm } from "../../components/Forms/Register";
 
@@ -15,8 +15,16 @@ export const LoginPage = () => {
   const [open, setOpen] = useState(false);
   return (
     <main>
-      <Container>
-        <StyledMain>
+      <Container
+        sx={{
+          height: "100vh",
+          backgroundColor: "rgba(207, 216, 220, 0.1)",
+          backdropFilter: "blur(4px)",
+          zIndex: 2,
+          position: "relative",
+        }}
+      >
+        <StyledSection>
           <Typography variant="body1">Ainda não tem conta?</Typography>
           <Button
             variant="outlined"
@@ -27,7 +35,7 @@ export const LoginPage = () => {
           >
             Criar conta
           </Button>
-        </StyledMain>
+        </StyledSection>
         <LoginForm />
         <Dialog
           open={open}
@@ -35,7 +43,7 @@ export const LoginPage = () => {
           aria-labelledby="Register form"
           aria-describedby="Registration for new users"
         >
-          <DialogTitle>Register</DialogTitle>
+          <DialogTitle color="secondary">Register</DialogTitle>
           <DialogContent>
             <RegisterForm />
           </DialogContent>
