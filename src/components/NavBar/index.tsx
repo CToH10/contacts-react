@@ -26,6 +26,7 @@ import { EditProfile } from "../Forms/Edit/Profile";
 import { Delete } from "@mui/icons-material";
 import { red } from "@mui/material/colors";
 import { UserContext } from "../../providers/user.provider";
+import { SearchBar } from "../searchBar";
 
 type ModalOptions = "New Contact" | "Edit Profile";
 
@@ -162,6 +163,8 @@ export const NavBar = () => {
                 Add contact
               </Button>
             </Box>
+
+            <SearchBar />
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
