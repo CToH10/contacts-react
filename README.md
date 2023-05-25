@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This app consumes [this](https://github.com/CToH10/contacts) API, so before trying this one out, make sure you have the proper connection.
 
+### If you don't want to install
+
+You can try the application [here](https://contacts-react-nine.vercel.app/home), but make sure the [API](https://github.com/CToH10/contacts) is running on port 3000.
+
 ## Installation
 
 In the project directory, you can run:
