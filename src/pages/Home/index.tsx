@@ -3,6 +3,7 @@ import { UserContext } from "../../providers/user.provider";
 import { useContext, useEffect } from "react";
 import { ContactCard } from "../../components/ContactCard";
 import { NavBar } from "../../components/NavBar";
+import { SearchBar } from "../../components/searchBar";
 
 export const HomePage = () => {
   const { contactsList, foundContacts } = useContext(UserContext);
@@ -10,13 +11,15 @@ export const HomePage = () => {
   useEffect(() => {
     contactsList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foundContacts]);
+  }, []);
 
   return (
     <>
       <NavBar />
 
-      <Container sx={{ marginTop: 2 }}>
+      <SearchBar />
+
+      <Container sx={{ marginTop: 5 }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}

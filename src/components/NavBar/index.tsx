@@ -14,9 +14,11 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
+
 import GroupsIcon from "@mui/icons-material/Groups";
 import MenuIcon from "@mui/icons-material/Menu";
 import Person2Icon from "@mui/icons-material/Person2";
+
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ContactForm } from "../Forms/Contact";
@@ -146,7 +148,7 @@ export const NavBar = () => {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              CONTACTS
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
