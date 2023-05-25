@@ -46,7 +46,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Point of attention
 
-To properly consume API, make sure you have the adequate URL in the service module.
+To properly consume API, make sure you have the adequate URL setup in your enviroment, according to the example.
 
 <h2 id="libs">:books: Libs</h2>
 
