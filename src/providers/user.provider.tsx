@@ -23,6 +23,7 @@ interface iUserProvider {
   editProfile: (data: EditProfileData) => Promise<void>;
   deleteContact: (id: string) => Promise<void>;
   editContact: (id: string, data: EditContactData) => Promise<void>;
+  deleteUser: () => Promise<void>;
 }
 
 interface iDecoded {
@@ -145,6 +146,14 @@ export const UserProvider = ({ children }: any) => {
     }
   };
 
+  const deleteUser = async () => {
+    try {
+      await api.delete(`users/${decoded!.sub}`, headers);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -158,6 +167,7 @@ export const UserProvider = ({ children }: any) => {
         editProfile,
         deleteContact,
         editContact,
+        deleteUser,
       }}
     >
       {children}

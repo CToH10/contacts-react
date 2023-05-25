@@ -12,14 +12,18 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  DialogActions,
 } from "@mui/material";
 import GroupsIcon from "@mui/icons-material/Groups";
 import MenuIcon from "@mui/icons-material/Menu";
 import Person2Icon from "@mui/icons-material/Person2";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ContactForm } from "../Forms/Contact";
 import { EditProfile } from "../Forms/Edit/Profile";
+import { Delete } from "@mui/icons-material";
+import { red } from "@mui/material/colors";
+import { UserContext } from "../../providers/user.provider";
 
 type ModalOptions = "New Contact" | "Edit Profile" | "Edit Contact";
 
@@ -28,6 +32,7 @@ export const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [open, setOpenModal] = useState<boolean>(false);
   const [modBody, setModBody] = useState<ModalOptions>("New Contact");
+  const { deleteUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const renderModBody = () => {
@@ -56,6 +61,11 @@ export const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
     setOpenModal(false);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -183,12 +193,7 @@ export const NavBar = () => {
                 >
                   <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    localStorage.clear();
-                    navigate("/");
-                  }}
-                >
+                <MenuItem onClick={logout}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
               </Menu>
@@ -206,6 +211,28 @@ export const NavBar = () => {
           >
             <DialogTitle>{modBody}</DialogTitle>
             <DialogContent>{renderModBody()}</DialogContent>
+            {modBody === "Edit Profile" && (
+              <DialogActions sx={{ justifyContent: "center" }}>
+                <Button
+                  type="button"
+                  size="small"
+                  rel="noopener nonreferrer"
+                  aria-label="Delete contact"
+                  sx={{
+                    color: red[600],
+                    ":hover": {
+                      backgroundColor: red[50],
+                    },
+                  }}
+                  onClick={() => {
+                    deleteUser();
+                    logout();
+                  }}
+                >
+                  <Delete />
+                </Button>
+              </DialogActions>
+            )}
           </Dialog>
         </Container>
       )}
