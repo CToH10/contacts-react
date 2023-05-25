@@ -16,6 +16,7 @@ interface iUserProvider {
   loading: boolean;
   foundContacts: iProfile[];
   user: iProfile;
+  token: string | null;
   loginSubmit: (data: LoginData) => Promise<void>;
   registerSubmit: (data: RegisterSubmission) => Promise<void>;
   newContact: (data: ContactData) => Promise<void>;
@@ -41,14 +42,6 @@ export interface iProfile {
   registered: string;
   userId: string;
 }
-
-// interface iError {
-//   response: {
-//     data: {
-//       message: string;
-//     };
-//   };
-// }
 
 export const UserContext = createContext<iUserProvider>({} as iUserProvider);
 
@@ -202,6 +195,7 @@ export const UserProvider = ({ children }: any) => {
         loading,
         user,
         foundContacts,
+        token,
         loginSubmit,
         registerSubmit,
         newContact,
