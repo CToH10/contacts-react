@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import { UserContext } from "../../providers/user.provider";
 import { useContext, useEffect } from "react";
 import { ContactCard } from "../../components/ContactCard";
@@ -27,6 +27,13 @@ export const HomePage = () => {
               <ContactCard contact={contact} key={contact.id} />
             </Grid>
           ))}
+          {foundContacts.length === 0 && (
+            <Container>
+              <Typography variant="h3" gutterBottom align="center">
+                No contacts found
+              </Typography>
+            </Container>
+          )}
         </Grid>
       </Container>
     </>
