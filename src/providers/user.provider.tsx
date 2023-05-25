@@ -115,15 +115,15 @@ export const UserProvider = ({ children }: any) => {
 
   const contactsList = async (queryParam?: string) => {
     try {
-      let contactsRoute: string = `/contacts`;
+      let contactsRoute: string = `/users/${decoded!.sub}`;
 
       if (queryParam) {
         contactsRoute = `contacts?name=${queryParam}`;
       }
 
       const list = await api.get(contactsRoute, headers);
-      setFoundContacts(list.data);
-      setUserInfo(list.data);
+      setFoundContacts(list.data.contacts || list.data);
+      queryParam ? setUserInfo(user) : setUserInfo(list.data);
     } catch (error) {
       const apiError = error as AxiosError<any>;
       let message = apiError.response?.data.message || "";
