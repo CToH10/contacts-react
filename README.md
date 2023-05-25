@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Before installing
 
-This app consumes [this](https://github.com/CToH10/contacts) API, so before trying this one out, make sure you have the proper connection.
+The application consumes [this](https://github.com/CToH10/contacts) API, so before trying this one out, make sure you have the proper connection.
 
 ### If you don't want to install
 
@@ -50,7 +50,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Point of attention
 
-To properly consume API, make sure you have the adequate URL setup in your enviroment, according to the example.
+To properly consume the [API](https://github.com/CToH10/contacts), make sure you have the adequate URL setup in your enviroment, according to the example.
 
 <h2 id="libs">:books: Libs</h2>
 
