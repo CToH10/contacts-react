@@ -24,7 +24,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(singIn)}>
+    <StyledForm onSubmit={handleSubmit(singIn)} type="Login">
       <InputLabel htmlFor="email">Email address</InputLabel>
       <Input
         disabled={loading}

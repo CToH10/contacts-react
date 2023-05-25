@@ -11,6 +11,7 @@ export const ContactForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ContactData>({
     mode: "onBlur",
@@ -21,6 +22,7 @@ export const ContactForm = () => {
 
   const registerContact = (data: ContactData) => {
     newContact(data);
+    reset();
   };
 
   return (

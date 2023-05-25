@@ -1,33 +1,36 @@
 import { InputLabel, Input, Button, Alert } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterData, registerSchema } from "./register.validator";
-import { StyledForm } from "../style";
+import { StyledForm } from "../../style";
 import SendIcon from "@mui/icons-material/Send";
 import { useContext } from "react";
-import { UserContext } from "../../../providers/user.provider";
+import { EditContactData, editProfileSchema } from "../edit.validators";
+import { UserContext } from "../../../../providers/user.provider";
+import { iProfileProps } from "../../../ContactCard";
 
-export const RegisterForm = () => {
+export const EditContact = ({ contact }: iProfileProps) => {
+  const { editContact, loading } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterData>({
+  } = useForm<EditContactData>({
     mode: "onBlur",
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(editProfileSchema),
+    defaultValues: {
+      fullName: contact.fullName,
+      email: contact.email,
+      phone: contact.phone,
+    },
   });
 
-  const { registerSubmit, loading } = useContext(UserContext);
-
-  const sendRegister: SubmitHandler<RegisterData> = ({
-    confirmPassword,
-    ...data
-  }: RegisterData) => {
-    registerSubmit(data);
+  const sendEdit: SubmitHandler<EditContactData> = (data: EditContactData) => {
+    editContact(contact.id, data);
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(sendRegister)} type="Register">
+    <StyledForm onSubmit={handleSubmit(sendEdit)} type="Register">
       <InputLabel htmlFor="fullName">Full Name</InputLabel>
       <Input
         disabled={loading}
@@ -60,28 +63,6 @@ export const RegisterForm = () => {
       />
       {errors.phone && (
         <Alert severity="warning">{errors.phone?.message}</Alert>
-      )}
-      <InputLabel htmlFor="password">Password</InputLabel>
-      <Input
-        disabled={loading}
-        id="password"
-        aria-describedby="Password input"
-        type="password"
-        {...register("password")}
-      />
-      {errors.password && (
-        <Alert severity="warning">{errors.password?.message}</Alert>
-      )}
-      <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
-      <Input
-        disabled={loading}
-        id="confirmPassword"
-        aria-describedby="Password confirmation input"
-        type="password"
-        {...register("confirmPassword")}
-      />
-      {errors.confirmPassword && (
-        <Alert severity="warning">{errors.confirmPassword?.message}</Alert>
       )}
       <Button
         type="submit"
