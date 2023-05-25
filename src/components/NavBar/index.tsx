@@ -18,7 +18,6 @@ import {
 import GroupsIcon from "@mui/icons-material/Groups";
 import MenuIcon from "@mui/icons-material/Menu";
 import Person2Icon from "@mui/icons-material/Person2";
-
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ContactForm } from "../Forms/Contact";
@@ -133,7 +132,6 @@ export const NavBar = () => {
                 </MenuItem>
               </Menu>
             </Box>
-            <GroupsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap

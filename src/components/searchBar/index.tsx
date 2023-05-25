@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useTheme, TextField, styled } from "@mui/material";
+import { useTheme, TextField, styled, Button } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
 import { SearchData } from "./search.validator";
 import { UserContext } from "../../providers/user.provider";
@@ -17,6 +17,8 @@ const StyledSearchInput = styled(TextField)(({ theme }: any) => {
         borderColor: `${theme.palette.grey[100]}`,
       },
     },
+    width: "clamp(80px, 20vw, 250px)",
+    height: "50%",
   };
 });
 
@@ -32,7 +34,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(search)}>
+    <form onSubmit={handleSubmit(search)} style={{ position: "relative" }}>
       <StyledSearchInput
         placeholder="Search..."
         variant="outlined"
@@ -40,23 +42,37 @@ export const SearchBar = () => {
         sx={{
           placeholder: {
             color: theme.palette.grey[100],
+            marginRight: "50px",
           },
         }}
         InputProps={{
-          startAdornment: (
-            <SearchOutlined
-              sx={{
-                color: theme.palette.grey[100],
-                height: "1.5rem",
-                width: "1.5rem",
-              }}
-            />
-          ),
           style: {
             color: theme.palette.grey[100],
           },
         }}
       />
+      <Button
+        size="small"
+        type="submit"
+        sx={{
+          position: "absolute",
+          right: "-20%",
+          "@media (min-width: 600px)": {
+            right: "-15%",
+          },
+          top: "20%",
+          display: { xs: "block", sm: "block", md: "none" },
+        }}
+        startIcon={
+          <SearchOutlined
+            sx={{
+              color: theme.palette.grey[100],
+              height: "1.5rem",
+              width: "1.5rem",
+            }}
+          />
+        }
+      ></Button>
     </form>
   );
 };

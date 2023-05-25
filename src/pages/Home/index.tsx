@@ -3,7 +3,6 @@ import { UserContext } from "../../providers/user.provider";
 import { useContext, useEffect } from "react";
 import { ContactCard } from "../../components/ContactCard";
 import { NavBar } from "../../components/NavBar";
-// import { SearchBar } from "../../components/searchBar";
 
 export const HomePage = () => {
   const { contactsList, foundContacts } = useContext(UserContext);
@@ -16,8 +15,6 @@ export const HomePage = () => {
   return (
     <>
       <NavBar />
-
-      {/* <SearchBar /> */}
 
       <Container sx={{ marginTop: 5 }}>
         <Grid
