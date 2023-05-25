@@ -10,7 +10,7 @@ export const HomePage = () => {
   useEffect(() => {
     contactsList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [foundContacts]);
 
   return (
     <>
