@@ -7,7 +7,10 @@ import { ContactData } from "../components/Forms/Contact/contact.validator";
 // import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import { EditProfileData } from "../components/Forms/Edit/edit.validators";
+import {
+  EditContactData,
+  EditProfileData,
+} from "../components/Forms/Edit/edit.validators";
 
 interface iUserProvider {
   loading: boolean;
@@ -19,6 +22,7 @@ interface iUserProvider {
   contactsList: () => Promise<void>;
   editProfile: (data: EditProfileData) => Promise<void>;
   deleteContact: (id: string) => Promise<void>;
+  editContact: (id: string, data: EditContactData) => Promise<void>;
 }
 
 interface iDecoded {
@@ -133,6 +137,14 @@ export const UserProvider = ({ children }: any) => {
     }
   };
 
+  const editContact = async (id: string, data: EditContactData) => {
+    try {
+      await api.patch(`contacts/${id}`, data, headers);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -145,6 +157,7 @@ export const UserProvider = ({ children }: any) => {
         contactsList,
         editProfile,
         deleteContact,
+        editContact,
       }}
     >
       {children}
