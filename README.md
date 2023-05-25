@@ -1,35 +1,40 @@
-# Getting Started with Create React App
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and built in TypeScript.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Before installing
+
+This app consumes [this](https://github.com/CToH10/contacts) API, so before trying this one out, make sure you have the proper connection.
+
+## Installation
+
+In the project directory, you can run:
+
+### `pnpm install`
+
+To install all libraries used in the project.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `pnpm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open your local host to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+### `pnpm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See the react official section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `pnpm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -39,8 +44,19 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Point of attention
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To properly consume API, make sure you have the adequate URL setup in your enviroment, according to the example.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<h2 id="libs">:books: Libs</h2>
+
+- [x] React
+- [x] Context API
+- [x] Axios
+- [x] React Router DOM
+- [x] React-hook-form
+- [x] Zod
+- [x] Material UI
+- [x] Styled components
+- [x] React hot toast
+- [x] Jwt decode
