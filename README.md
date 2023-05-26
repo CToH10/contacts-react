@@ -16,6 +16,10 @@ In the project directory, you can run:
 
 To install all libraries used in the project.
 
+### Setting up the enviroment
+
+To consume the API you have to configure a `.env` file, following the example set in `.env.example`, down to the last `/`.
+
 ## Available Scripts
 
 In the project directory, you can run:
